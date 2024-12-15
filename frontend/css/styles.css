@@ -1,0 +1,290 @@
+/* General Styles */
+body {
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+    background-image: url('background.webp');
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed during scrolling */
+    overflow-x: hidden;
+    
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  
+/* Site Header Styling */
+.site-header {
+  display: flex;
+  justify-content: space-between; /* Space between the logo and navigation */
+  align-items: center; /* Vertically align logo and navigation */
+  padding: 15px 20px; /* Add spacing around the header */
+  background-color: #f4fdf4; /* Light green background */
+  height: 100px; /* Set a consistent height for the header */
+  border-bottom: 1px solid #ddd; /* Optional: Add a subtle border */
+}
+
+/* Logo Styling */
+.logo-container {
+  display: flex;
+  align-items: center; /* Center-align the logo vertically */
+}
+
+.logo-icon {
+  width: 50px; /* Adjust the size of the logo */
+  height: auto;
+}
+
+/* Navigation Menu */
+.navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Space between navigation links */
+  margin: 0;
+  padding: 0;
+}
+
+.navigation ul li {
+  display: inline;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  font-size: 21px; /* Consistent font size for navigation links */
+  font-weight: bold;
+  color: #333; /* Neutral color for links */
+  transition: color 0.3s ease; /* Smooth hover transition */
+}
+
+.navigation ul li a:hover {
+  color: #4caf50; /* Highlight color on hover */
+}
+
+
+  
+  /* Content Wrapper */
+  .content-wrapper {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .welcome-heading {
+    font-size: 3rem;
+    color: #98f474;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .welcome-subheading {
+    font-size: 1.5rem;
+    color: #84c746;
+    margin-bottom: 30px;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .option {
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    background: linear-gradient(to right, #43a047, #2e7d32);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .option:hover {
+    background: linear-gradient(to right, #2e7d32, #43a047);
+    transform: scale(1.1);
+  }
+  
+  /* Cards */
+  .cards-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-icon {
+    width: 80px; /* Set a consistent width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 15px; /* Add space between the icon and the text */
+    display: block; /* Ensure the icon is treated as a block element */
+    margin-left: auto;
+    margin-right: auto; /* Center the icon within the card */
+    border-radius: 8px; /* Optional: Add slight rounding for aesthetics */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow for depth */
+}
+@media (max-width: 768px) {
+  .card-icon {
+      width: 60px; /* Reduce size further for smaller screens */
+  }
+}
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card h3 {
+    font-size: 1.5rem;
+    color: #2e7d32;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+
+
+/* Nutritional Facts Section */
+.nutritional-facts {
+  padding: 50px 20px;
+  background-color: #f9fdf9; /* Light green background */
+  text-align: center;
+}
+
+.nutritional-facts h2 {
+  font-size: 2.5rem;
+  color: #2e7d32; /* Dark green */
+  margin-bottom: 30px;
+}
+
+/* Scrollable Container */
+.facts-scroll-container {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 15px; /* Space between cards */
+  padding-bottom: 15px;
+  scrollbar-width: thin; /* Customize scrollbar width for modern browsers */
+  scroll-behavior: smooth; /* Smooth scrolling experience */
+}
+
+.facts-scroll-container::-webkit-scrollbar {
+  height: 8px; /* Set scrollbar height */
+}
+
+.facts-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #4caf50; /* Green scrollbar */
+  border-radius: 10px;
+}
+
+/* Individual Fact Cards */
+.fact-card {
+  flex: 0 0 auto; /* Prevent cards from shrinking */
+  width: 250px; /* Fixed width for consistency */
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.fact-icon {
+  width: 80px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.fact-card h3 {
+  font-size: 1.5rem;
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.fact-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+
+
+  /* CTA Section */
+  .cta-section {
+    text-align: center;
+    padding: 30px;
+    margin: 40px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .cta-section p {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .cta-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: linear-gradient(to right, #2e7d32, #43a047);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .cta-button:hover {
+    background: linear-gradient(to right, #43a047, #2e7d32);
+    transform: scale(1.1);
+  }
+  
+  /* Footer */
+  footer {
+    background: #2e7d32;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section {
+    min-width: 200px;
+  }
+  
+  .footer-section h4 {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section p, .footer-section a {
+    font-size: 0.9rem;
+  }
+  
+  .social-icon {
+    width: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.2);
+  }
+  
