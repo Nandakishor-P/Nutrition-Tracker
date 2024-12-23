@@ -114,6 +114,11 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+CSRF_COOKIE_HTTPONLY = True
+
+EDAMAM_APP_ID = '5212e549'
+EDAMAM_APP_KEY = '1c42bef071cd5efc86b2a18f867b30e4'
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -126,6 +131,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'..', '..', "frontend", "css"),  # Adjusted path to frontend/css
+    os.path.join(BASE_DIR, '..', '..', "frontend", "static"),  # Adjusted path to frontend/static
 ]
 
 # Default primary key field type

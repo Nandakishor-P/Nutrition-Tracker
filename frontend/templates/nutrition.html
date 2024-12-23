@@ -19,7 +19,7 @@
           <ul>
               <li><a href="#home">Home</a></li>
               <li><a href="#features">Features</a></li>
-              <li><a href="#get-started">Get Started</a></li>
+              <li><a href="#cta">Get Started</a></li>
           </ul>
       </nav>
     </header>
@@ -29,8 +29,8 @@
       <h1 class="welcome-heading">Your Journey to a Healthier Lifestyle Starts Here</h1>
       <h2 class="welcome-subheading">Join our community of health-conscious individuals.</h2>
       <div class="options">
-        <button class="option">Login</button>
-        <button class="option">Signup</button>
+        <a href="/login" class="option">Login</a>
+        <a href="/signup" class="option">Sign Up</a>
       </div>
     </div>
 
@@ -111,37 +111,126 @@
 
 
 
-
+    <!-- CTA section-->
     <section id="cta" class="cta-section">
       <h2>Start Your Health Journey Today</h2>
       <p>Sign up now to unlock your full potential and embrace a healthier lifestyle.</p>
-      <button class="cta-button">Get Started</button>
+      <a href="/signup" class="option">Get Started</a>
     </section>
 
     <footer>
-      <div class="footer-wrapper">
+      <div class="footer-row">
         <div class="footer-section">
           <h4>Contact ME</h4>
-          <p>AM.EN.U4AIE21045,<br>Nandakishor P</p>
-          <p>Amrita Vishwa Vidyapeetham, Kollam, Kerala</p>
+          <p>AM.EN.U4AIE21045<br>Nandakishor P</p>
+          <p>Amrita Vishwa Vidyapeetham, Kollam Kerala</p>
           <p>Email: naandakishorp@gmail.com</p>
-          <p>Phone: 9497302983,<br>9035775689</p>
+          <p>Phone: 9497302983, 9035775689</p>
         </div>
         <div class="footer-section">
           <h4>Quick Links</h4>
-          <a href="#">About Us</a><br>
-          <a href="#">Features</a><br>
-          <a href="#">Testimonials</a><br>
-          <a href="#">Pricing</a>
+          <ul class="footer-links">
+            <li><a href="#top">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="about.html" target="_blank">About Author</a></li>
+            <li><a href="#" onclick="openContactForm()">Reach Out to Us</a></li>
+          </ul>
+        </div>
+        <!-- Contact Form Modal -->
+        <div id="contact-modal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeContactForm()">&times;</span>
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+              <input type="text" name="name" placeholder="Your Name" required>
+              <input type="email" name="email" placeholder="Your Email" required>
+              <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+              <button type="submit" class="submit-button">Send</button>
+              <p id="form-response" style="color: green; margin-top: 10px; display: none;"></p>
+            </form>
+          </div>
         </div>
         <div class="footer-section">
           <h4>Follow Us</h4>
-          <a href="#"><img src="{% static 'facebook.png' %}" alt="Facebook" class="social-icon"></a>
-          <a href="#"><img src="{% static 'twitter.png' %}" alt="Twitter" class="social-icon"></a>
-          <a href="#"><img src="{% static 'Instagram.png' %}" alt="Instagram" class="social-icon"></a>
+          <a href="{{ social_links.facebook }}" target="_blank">
+            <img src="{% static 'facebook.png' %}" alt="Facebook" class="social-icon">
+          </a>
+          <a href="{{ social_links.instagram }}" target="_blank">
+            <img src="{% static 'instagram.png' %}" alt="Instagram" class="social-icon">
+          </a>
+          <a href="{{ social_links.linkedin }}" target="_blank">
+            <img src="{% static 'linkedin.png' %}" alt="LinkedIn" class="social-icon">
+          </a>
+          <a href="{{ social_links.github }}" target="_blank">
+            <img src="{% static 'github.png' %}" alt="GitHub" class="social-icon">
+          </a>
+
+        </div>
+        <div class="footer-section">
+          <h4>Newsletter</h4>
+          <form id="newsletter-form">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit" class="subscribe-button">Subscribe</button>
+            <p id="newsletter-response" style="color: rgb(11, 12, 11); margin-top: 10px; display: none;"></p>
+          </form>
         </div>
       </div>
     </footer>
   </div>
+  <script>
+    function openContactForm() {
+      document.getElementById('contact-modal').style.display = 'block';
+    }
+  
+    function closeContactForm() {
+      document.getElementById('contact-modal').style.display = 'none';
+    }
+  
+    // Close the modal if the user clicks outside the modal content
+    window.onclick = function(event) {
+      const modal = document.getElementById('contact-modal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  </script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent the default form submission
+  
+      // Display a success message
+      const responseElement = document.getElementById('form-response');
+      responseElement.textContent = 'Message sent successfully!';
+      responseElement.style.display = 'block';
+  
+      // Clear the form fields after submission
+      this.reset();
+    });
+  </script>
+  <script>
+    // Handle Newsletter Form Submission
+    document.getElementById('newsletter-form').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent the default form submission
+  
+      // Display a success message
+      const responseElement = document.getElementById('newsletter-response');
+      responseElement.textContent = 'Subscribed successfully!';
+      responseElement.style.display = 'block';
+  
+
+      setTimeout(() => {
+      responseElement.style.display = 'none';
+      }, 2000);
+
+      // Clear the form fields after submission
+      this.reset();
+    });
+  </script>
+  
+  
+  
+  
+  
+
 </body>
 </html>

@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .signup-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      padding: 20px 30px;
+      text-align: center;
+    }
+
+    .signup-container h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #2e7d32;
+    }
+
+    .signup-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .signup-container input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .signup-container button {
+      padding: 10px;
+      font-size: 1rem;
+      color: white;
+      background-color: #43a047;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .signup-container button:hover {
+      background-color: #2e7d32;
+    }
+
+    .signup-container p {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .signup-container p a {
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .signup-container p a:hover {
+      color: #43a047;
+    }
+
+    .messages {
+      margin-bottom: 15px;
+    }
+
+    .messages p {
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+
+    .messages .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .messages .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h1>Create Your Account</h1>
+
+    <div class="messages">
+      {% if messages %}
+        {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <form action="/signup" method="post" id = "signup-form">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Enter your username" required minlength="4" maxlength="12" pattern="^[a-zA-Z0-9]+$" title="Username must be 4-12 characters long and contain only letters and numbers.">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <input type="password" name="password" placeholder="Enter your password" required minlength="4" title="Password must be minimum 8 characters long.">
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p>Already have an account? <a href="/login">Login here</a></p>
+  </div>
+
+  <script src="{% static 'form-validation.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Author</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <style>
+    .author-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.github-link:hover {
+  background-color: #2e7d32;
+  color: white;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="text-align: center; color: #2e7d32;">About the Author</h1>
+  </header>
+  <main style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
+    <!-- Photo Section -->
+    <div>
+      <img src="{% static 'author-photo.png' %}" alt="Your Name" style="width: 150px; height: 150px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </div>
+
+    <!-- About Section -->
+    <div style="max-width: 600px; text-align: center; margin-top: 20px;">
+      <h2 style="color: #43a047;">Hi, I'm Nandakishor P!</h2>
+      <p>
+        I am a student at Amrita Vishwa Vidyapeetham, passionate about software development, health tech solutions, 
+        and building projects that make a positive impact. The Health and Nutrition Tracker project is part of my 
+        effort to encourage healthy living in a tech-driven world.
+      </p>
+    </div>
+
+    <!-- GitHub Section -->
+    <div style="margin-top: 20px;">
+      <a href="https://github.com/Nandakishor-P" target="_blank" style="text-decoration: none; color: #2e7d32; font-size: 1.2rem; font-weight: bold; border: 2px solid #2e7d32; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;">
+        Visit My GitHub Profile
+      </a>
+    </div>
+  </main>
+</body>
+</html>

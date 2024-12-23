@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modify Your Goals</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .header {
+      background: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+    }
+
+    .current-goals {
+      margin-bottom: 20px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .current-goals h2 {
+      color: #4CAF50;
+      margin-bottom: 10px;
+    }
+
+    .modify-goals {
+      margin-top: 20px;
+      display: none; /* Initially hidden */
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-group input:focus {
+      border-color: #4CAF50;
+      outline: none;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+
+    button {
+      background: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Daily Requirements</h1>
+    <ul>
+        <li>Calories: {{ requirements.calories }} kcal</li>
+        <li>Water: {{ requirements.water }} liters</li>
+        <li>Protein: {{ requirements.protein }} grams</li>
+        <li>Fats: {{ requirements.fats }} grams</li>
+    </ul>
+
+    <h2>Set Your Goals</h2>
+    <form method="post" action="{% url 'save_goals' %}">
+        {% csrf_token %}
+        <label for="goal">Goal:</label>
+        <select name="goal" id="goal">
+            <option value="reduce">Reduce Weight</option>
+            <option value="maintain">Maintain Weight</option>
+            <option value="increase">Increase Calories</option>
+        </select><br>
+        <button type="submit">Save Goals</button>
+    </form>
+</body>
+</html>

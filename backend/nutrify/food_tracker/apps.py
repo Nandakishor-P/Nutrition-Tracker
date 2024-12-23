@@ -4,3 +4,6 @@ from django.apps import AppConfig
 class FoodTrackerConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'food_tracker'
+
+    def ready(self):
+        import food_tracker.signals

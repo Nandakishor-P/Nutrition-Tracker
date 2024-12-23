@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4fdf4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2e7d32;
+      color: white;
+      padding: 10px 20px;
+      position: relative;
+    }
+
+    .navbar .menu {
+      display: none;
+      flex-direction: column;
+      background-color: #2e7d32;
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .navbar .menu a {
+      color: rgb(248, 248, 248);
+      text-decoration: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar .menu a:last-child {
+      border-bottom: none;
+    }
+
+    .navbar .menu a:hover {
+      background-color: #43a047;
+    }
+
+    .navbar .hamburger {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: rgb(245, 242, 242);
+      background: none;
+      border: none;
+      margin-left: auto; 
+    }
+
+    .navbar .hamburger:focus {
+      outline: none;
+    }
+
+    .show-menu {
+      display: flex !important; /* Make the menu visible */
+      flex-direction: column;   /* Ensure vertical alignment */
+    }
+
+    .welcome {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 2rem;
+      color: #2e7d32;
+      font-weight: bold;
+    }
+
+    .choices-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .choice-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .choice-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .choice-card h3 {
+      font-size: 1.5rem;
+      color: #2e7d32;
+      margin-bottom: 15px;
+    }
+
+    .choice-card a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: white;
+      background-color: #43a047;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .choice-card a:hover {
+      background-color: #2e7d32;
+    }
+
+    .goal-section, .intake-comparison {
+      margin: 30px auto;
+      max-width: 800px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .goal-section h2, .intake-comparison h2 {
+      font-size: 1.8rem;
+      color: #2e7d32;
+      margin-bottom: 15px;
+    }
+
+    .goal-section ul, .intake-comparison ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .goal-section li, .intake-comparison li {
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+
+    .suggestions {
+      font-size: 1.2rem;
+      margin-top: 20px;
+      color: #d32f2f;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <span class="hamburger" onclick="toggleMenu()">☰</span>
+    <div class="menu" id="menu">
+      <a href="/change-password/" style="font-size: small;">Change Password</a>
+      <form action="{% url 'logout' %}" method="post" style="display:flex;">
+        {% csrf_token %}
+        <button type="submit" class="logout-button">Logout</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="welcome">
+    <p>Welcome to your dashboard, {{ request.user.username }}!</p>
+  </div>
+
+  <div class="choices-container">
+    <div class="choice-card">
+      <h3>Track Food Intake</h3>
+      <p>Log your meals and track nutritional details.</p>
+      <a href="{% url 'log_food' %}">Go to Food Tracker</a>
+    </div>
+    <div class="choice-card">
+      <h3>Track Water Intake</h3>
+      <p>Log your daily water consumption and stay hydrated.</p>
+      <a href="{% url 'water-intake' %}">Go to Water Tracker</a>
+    </div>
+    <div class="choice-card">
+      <h3>Set Goals</h3>
+      <p>Set and monitor your fitness and nutrition goals.</p>
+      <a href="{% url 'set_goals' %}">Set Your Goals</a>
+    </div>
+  </div>
+
+  <!-- Display Current Goals -->
+  {% if goal %}
+  <div class="goal-section">
+    <h2>Your Current Goals</h2>
+    <ul>
+      <li><strong>Goal Type:</strong> {{ goal.get_goal_type_display }}</li>
+      <li><strong>Daily Calorie Goal:</strong> {{ daily_requirements.calories }} kcal</li>
+      <li><strong>Daily Water Goal:</strong> {{ daily_requirements.water }} liters</li>
+      <li><strong>Daily Protein Goal:</strong> {{ daily_requirements.protein }} grams</li>
+      <li><strong>Daily Fat Goal:</strong> {{ daily_requirements.fats }} grams</li>
+    </ul>
+  </div>
+  {% endif %}
+
+  <!-- Intake Comparison -->
+  {% if daily_requirements %}
+  <div class="intake-comparison">
+    <h2>Today's Intake</h2>
+    <ul>
+      <li><strong>Calories Consumed:</strong> {{ total_calories }} kcal</li>
+      <li><strong>Water Consumed:</strong> {{ total_water }} liters</li>
+      <li><strong>Protein Consumed:</strong> {{ total_protein }} grams</li>
+      <li><strong>Fats Consumed:</strong> {{ total_fats }} grams</li>
+    </ul> 
+
+    <h2>Adjustments Needed</h2>
+    <ul>
+      <li><strong>Calories:</strong> {{ differences.calories }} kcal {% if differences.calories > 0 %}remaining{% else %}over{% endif %}</li>
+      <li><strong>Water:</strong> {{ differences.water }} liters {% if differences.water > 0 %}remaining{% else %}over{% endif %}</li>
+      <li><strong>Protein:</strong> {{ differences.protein }} grams {% if differences.protein > 0 %}remaining{% else %}over{% endif %}</li>
+      <li><strong>Fats:</strong> {{ differences.fats }} grams {% if differences.fats > 0 %}remaining{% else %}over{% endif %}</li>
+    </ul>
+    <p class="suggestions">Adjust your intake to meet your goals!</p>
+  </div>
+  {% endif %}
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('show-menu'); // Toggle the 'show-menu' class
+    }
+  </script>
+</body>
+</html>

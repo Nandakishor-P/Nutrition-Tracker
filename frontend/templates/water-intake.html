@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water Intake</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <style>
+    /* Container styling */
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 10px;
+      background: #4CAF50;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    .header h1 {
+      margin: 0;
+    }
+
+    .header form button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .header form button:hover {
+      text-decoration: none;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section h2 {
+      margin-bottom: 10px;
+      color: #4CAF50;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-group input:focus {
+      border-color: #4CAF50;
+      outline: none;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+
+    button {
+      background: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Welcome, {{ request.user.username }}</h1>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>Log Water Intake</h2>
+      <form action="{% url 'water-intake' %}" method="post" class="form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="amount">How much glasses of water did you drink today? (Glasses)</label>
+          <input type="number" id="amount" name="amount" step="0.1" min="0" required>
+        </div>
+        <button type="submit">Log Water</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>Your Water Logs</h2>
+      <button class="toggle-button" onclick="toggleWaterLogs()">Show Logs</button>
+      <ul class="water-logs" id="water-logs" style="display: none;">
+        {% for log in water_logs %}
+        <li>
+          <strong>Entry #{{ forloop.counter }}</strong><br>
+          <span>Date: {{ log.date }}</span><br>
+          <span>Amount: {{ log.amount }} L</span>
+        </li>
+        {% empty %}
+        <li>No water logs available. Start logging your water intake!</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Ensure logs are hidden by default
+      const logs = document.getElementById('water-logs');
+      const button = document.querySelector('button[onclick="toggleWaterLogs()"]');
+      logs.style.display = 'none'; // Hide logs on page load
+      button.textContent = 'Show Logs'; // Set initial button text
+    });
+
+    function toggleWaterLogs() {
+      const logs = document.getElementById('water-logs'); // Get the water logs container
+      const button = document.querySelector('button[onclick="toggleWaterLogs()"]'); // Get the button
+
+      // Toggle the display of the logs
+      if (logs.style.display === 'none' || logs.style.display === '') {
+        logs.style.display = 'block'; // Show logs
+        button.textContent = 'Hide Logs'; // Update button text
+      } else {
+        logs.style.display = 'none'; // Hide logs
+        button.textContent = 'Show Logs'; // Reset button text
+      }
+    }
+  </script>
+</body>
+</html>
