@@ -136,16 +136,15 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Ensure logs are hidden by default
       const logs = document.getElementById('water-logs');
       const button = document.querySelector('button[onclick="toggleWaterLogs()"]');
-      logs.style.display = 'none'; // Hide logs on page load
-      button.textContent = 'Show Logs'; // Set initial button text
+      logs.style.display = 'none'; 
+      button.textContent = 'Show Logs';
     });
 
     function toggleWaterLogs() {
-      const logs = document.getElementById('water-logs'); // Get the water logs container
-      const button = document.querySelector('button[onclick="toggleWaterLogs()"]'); // Get the button
+      const logs = document.getElementById('water-logs'); 
+      const button = document.querySelector('button[onclick="toggleWaterLogs()"]'); 
 
       // Toggle the display of the logs
       if (logs.style.display === 'none' || logs.style.display === '') {

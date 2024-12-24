@@ -1,12 +1,12 @@
 /* General Styles */
 body {
-    margin: 0; /* Remove any default margin */
-    padding: 0; /* Remove any default padding */
+    margin: 0; /* default margin is removed */
+    padding: 0; /* default padding is removed */
     background-image: url('background.webp');
-    background-size: cover; /* Ensures the image covers the entire area */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    background-attachment: fixed; /* Keeps the background fixed during scrolling */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
     overflow-x: hidden;
     
   }
@@ -24,22 +24,22 @@ body {
 /* Site Header Styling */
 .site-header {
   display: flex;
-  justify-content: space-between; /* Space between the logo and navigation */
-  align-items: center; /* Vertically align logo and navigation */
-  padding: 15px 20px; /* Add spacing around the header */
-  background-color: #f4fdf4; /* Light green background */
-  height: 100px; /* Set a consistent height for the header */
-  border-bottom: 1px solid #ddd; /* Optional: Add a subtle border */
+  justify-content: space-between; 
+  align-items: center; /* logo and navigation vertically aligned*/
+  padding: 15px 20px; 
+  background-color: #f4fdf4; 
+  height: 100px; /* header height */
+  border-bottom: 1px solid #ddd;
 }
 
 /* Logo Styling */
 .logo-container {
   display: flex;
-  align-items: center; /* Center-align the logo vertically */
+  align-items: center; /* logo is centralised */
 }
 
 .logo-icon {
-  width: 50px; /* Adjust the size of the logo */
+  width: 50px; 
   height: auto;
 }
 
@@ -58,14 +58,13 @@ body {
 
 .navigation ul li a {
   text-decoration: none;
-  font-size: 21px; /* Consistent font size for navigation links */
-  font-weight: bold;
-  color: #333; /* Neutral color for links */
-  transition: color 0.3s ease; /* Smooth hover transition */
+  font-size: 21px; 
+  color: #333; 
+  transition: color 0.3s ease; 
 }
 
 .navigation ul li a:hover {
-  color: #4caf50; /* Highlight color on hover */
+  color: #4caf50;
 }
 
 
@@ -130,18 +129,18 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card-icon {
-  width: 80px; /* Set a consistent width */
-  height: auto; /* Maintain aspect ratio */
-  margin-bottom: 15px; /* Add space between the icon and the text */
-  display: block; /* Ensure the icon is treated as a block element */
+  width: 80px; 
+  height: auto; 
+  margin-bottom: 15px; /* controls the space between the icon and the text */
+  display: block; /* icon is a block element */
   margin-left: auto;
-  margin-right: auto; /* Center the icon within the card */
-  border-radius: 8px; /* Optional: Add slight rounding for aesthetics */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow for depth */
+  margin-right: auto; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 @media (max-width: 768px) {
   .card-icon {
-      width: 60px; /* Reduce size further for smaller screens */
+      width: 60px; /* if screen size is changed , adjust the width accordingly */
   }
 }
 .card:hover {
@@ -165,39 +164,39 @@ body {
 /* Nutritional Facts Section */
 .nutritional-facts {
   padding: 50px 20px;
-  background-color: #f9fdf9; /* Light green background */
+  background-color: #f9fdf9;
   text-align: center;
 }
 
 .nutritional-facts h2 {
   font-size: 2.5rem;
-  color: #2e7d32; /* Dark green */
+  color: #2e7d32; 
   margin-bottom: 30px;
 }
 
 /* Scrollable Container */
 .facts-scroll-container {
   display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  gap: 15px; /* Space between cards */
+  overflow-x: auto; /* for horizontal scrolling */
+  gap: 15px; 
   padding-bottom: 15px;
-  scrollbar-width: thin; /* Customize scrollbar width for modern browsers */
-  scroll-behavior: smooth; /* Smooth scrolling experience */
+  scrollbar-width: thin; 
+  scroll-behavior: smooth; 
 }
 
 .facts-scroll-container::-webkit-scrollbar {
-  height: 8px; /* Set scrollbar height */
+  height: 8px; 
 }
 
 .facts-scroll-container::-webkit-scrollbar-thumb {
-  background-color: #4caf50; /* Green scrollbar */
+  background-color: #4caf50; 
   border-radius: 10px;
 }
 
 /* Individual Fact Cards */
 .fact-card {
-  flex: 0 0 auto; /* Prevent cards from shrinking */
-  width: 250px; /* Fixed width for consistency */
+  flex: 0 0 auto; /*Stays 250px wide */
+  width: 250px; 
   background: #ffffff;
   padding: 20px;
   border-radius: 10px;
@@ -257,23 +256,23 @@ body {
 
 .footer-row {
   display: flex;
-  justify-content: space-around; /* Spread the sections evenly */
+  justify-content: space-around; 
   align-items: flex-start; /* Align items to the top */
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  flex-wrap: wrap; 
   padding: 20px;
-  background-color: #2e7d32; /* Dark green background */
-  color: #fff; /* White text for contrast */
+  background-color: #2e7d32; 
+  color: #fff; 
 }
 
 .footer-section {
   flex: 1; /* Equal space for each section */
-  margin: 0 25px; /* Add spacing between sections */
-  text-align: center; /* Center text within each section */
+  margin: 0 25px; 
+  text-align: center; 
 }
 
 .footer-section p {
-  color: #fcfcfc; /* Match the color of the "Contact ME" section */
-  font-size: medium; /* Consistent font size */
+  color: #fcfcfc; 
+  font-size: medium; 
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -296,10 +295,10 @@ body {
 
 .footer-links a {
   text-decoration: none;
-  color: #fcfcfc; /* Match the color of the "Contact ME" section */
-  font-size: 17.8px; /* Consistent font size */
+  color: #fcfcfc; 
+  font-size: 17.8px; 
   font-family: 'Times New Roman', Times, serif;
-  transition: color 0.3s ease; /* Smooth hover transition */
+  transition: color 0.3s ease; 
 
 }
 
@@ -309,15 +308,15 @@ body {
 
 /* Modal container (hidden by default) */
 .modal {
-  display: none; /* Hidden by default */
+  display: none; 
   position: fixed;
-  z-index: 1000; /* Above other elements */
+  z-index: 1000; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; /* Enable scroll for long modals */
-  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Modal content box */
@@ -407,14 +406,14 @@ form button:hover {
   background-color: #43a047;
 }
 .subscribe-button {
-  padding: 10px 20px; /* Add padding for size */
-  background-color: #43a047; /* Dark green background */
-  color: rgb(248, 248, 248); /* White text */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; 
+  background-color: #43a047; 
+  color: rgb(248, 248, 248); 
+  border: none; 
+  border-radius: 5px; 
   cursor: pointer; /* Change cursor to pointer on hover */
-  font-size: 1rem; /* Adjust font size */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  font-size: 1rem;
+  transition: background-color 0.3s ease; 
 }
 
 

@@ -57,49 +57,43 @@
       <div class="container">
           <h2>Did You Know?</h2>
           <div class="facts-scroll-container">
-              <!-- Fact 1 -->
+
               <div class="fact-card">
                   <img src="{% static 'apple.png' %}" alt="Apple Icon" class="fact-icon">
                   <h3>An Apple a Day</h3>
                   <p>Eating apples boosts heart health and lowers the risk of diabetes.</p>
               </div>
 
-              <!-- Fact 2 -->
               <div class="fact-card">
                   <img src="{% static 'water.png' %}" alt="Water Icon" class="fact-icon">
                   <h3>Stay Hydrated</h3>
                   <p>Drinking at least 8 cups of water daily improves your metabolism and energy levels.</p>
               </div>
 
-              <!-- Fact 3 -->
               <div class="fact-card">
                   <img src="{% static 'veggies.png' %}" alt="Vegetable Icon" class="fact-icon">
                   <h3>Go Green</h3>
                   <p>Leafy vegetables like spinach are rich in iron and boost your immunity.</p>
               </div>
 
-              <!-- Fact 4 -->
               <div class="fact-card">
                   <img src="{% static 'fruit.png' %}" alt="Fruit Icon" class="fact-icon">
                   <h3>Eat More Fruits</h3>
                   <p>Fruits are packed with essential vitamins and antioxidants for a healthy body.</p>
               </div>
 
-              <!-- Fact 5 -->
               <div class="fact-card">
                   <img src="{% static 'dairy.png' %}" alt="Diary Icon" class="fact-icon">
                   <h3>Boost Calcium</h3>
                   <p>Dairy products provide calcium for strong bones. Choose low-fat options for a healthy diet.</p>
               </div>
 
-              <!-- Fact 6 -->
               <div class="fact-card">
                 <img src="{% static 'protein.png' %}" alt="Protein Icon" class="fact-icon">
                 <h3>Protein Power</h3>
                 <p>Proteins are essential for muscle repair and growth. Include lean meats, beans, or tofu in your meals.</p>
               </div>
 
-              <!-- Fact 7-->
               <div class = "fact-card">
                 <img src="{% static 'sleep.png' %}" alt="Sleep Icon" class="fact-icon">
                 <h3>Sleep and Nutrition</h3>
@@ -198,12 +192,11 @@
     document.getElementById('contact-form').addEventListener('submit', function (e) {
       e.preventDefault(); // Prevent the default form submission
   
-      // Display a success message
+      // success message
       const responseElement = document.getElementById('form-response');
       responseElement.textContent = 'Message sent successfully!';
       responseElement.style.display = 'block';
   
-      // Clear the form fields after submission
       this.reset();
     });
   </script>
@@ -211,8 +204,6 @@
     // Handle Newsletter Form Submission
     document.getElementById('newsletter-form').addEventListener('submit', function (e) {
       e.preventDefault(); // Prevent the default form submission
-  
-      // Display a success message
       const responseElement = document.getElementById('newsletter-response');
       responseElement.textContent = 'Subscribed successfully!';
       responseElement.style.display = 'block';
