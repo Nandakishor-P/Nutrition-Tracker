@@ -5,7 +5,6 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-from django.shortcuts import render, redirect
 from .models import FoodLog, WaterLog, Goal
 from .utils import get_nutrition
 from .forms import UserDetailsForm
@@ -34,29 +33,27 @@ def signup(request):
         email = request.POST['email'].strip()
         password = request.POST['password'].strip()
 
-        # Validate username
+        # Username Validation
         if not username.isalnum() or len(username) < 4 or len(username) > 12:
             messages.error(request, 'Username must be 4-12 characters long and contain only letters and numbers.')
             return render(request, 'signup.html')
 
-        # Validate email
+        # Email validation
         try:
             validate_email(email)
         except ValidationError:
             messages.error(request, 'Please enter a valid email address.')
             return render(request, 'signup.html')
 
-        # Validate password
+        # VPassword Validation
         if len(password) < 8 or len(password) > 20:
             messages.error(request, 'Password must be 4-12 characters long.')
             return render(request, 'signup.html')
 
-        # Check if username already exists
         if User.objects.filter(username=username).exists():
             messages.error(request, 'Username already exists. Please choose another one.')
             return render(request, 'signup.html')
         
-        #to check if email already exists
         if User.objects.filter(email=email).exists():
             messages.error(request, 'Email already registered. Please use a different email or log in.')
             return render(request, 'signup.html')
@@ -111,16 +108,16 @@ def log_food(request):
     View to log multiple food items and their nutritional details.
     """
     if request.method == 'POST':
-        num_items = int(request.POST.get('num_items', 0))  # Number of food items
+        num_items = int(request.POST.get('num_items', 0))  
         logged_items = []
         errors = []
 
         # Loop through each food item
         for i in range(1, num_items + 1):
-            food_item = request.POST.get(f'food_item_{i}')  # e.g., "Apple"
+            food_item = request.POST.get(f'food_item_{i}') 
             if food_item:
                 # Fetch nutrition data from Edamam
-                nutrition_data = get_nutrition(f"100g {food_item}")  # Default to 100g
+                nutrition_data = get_nutrition(f"100g {food_item}")
                 if nutrition_data:
                     # Save the food log in the database
                     food_log = FoodLog.objects.create(
@@ -153,12 +150,9 @@ def track_water_intake(request):
     """
     if request.method == 'POST':
         # Retrieve water intake from the POST data
-        amount = float(request.POST.get('amount', 0))  # Input value in liters
+        amount = float(request.POST.get('amount', 0))  
         if amount > 0:
-            # Create a new WaterLog entry and save it to the database
             WaterLog.objects.create(user=request.user, amount=amount)
-
-        # Redirect to avoid resubmission
         return redirect('water-intake')
 
     # Handle GET requests by fetching water logs for the user
@@ -188,7 +182,6 @@ def calculate_daily_requirements(goal_type, age, height, weight, gender, exercis
     elif goal_type == 'increase':
         daily_calories *= 1.2  # Increase by 20%
 
-    # Water intake (liters), protein (grams), fats (grams)
     daily_water = weight * 0.033
     daily_protein = weight * (1.6 if goal_type == 'increase' else 0.8)
     daily_fats = (daily_calories * 0.2) / 9
@@ -235,7 +228,7 @@ def dashboard(request):
         }
         daily_requirements = calculate_daily_requirements(
             goal.goal_type,
-            **user_details
+            **user_details #** unpacks the dictionary
         )
 
         # Compare intake with requirements

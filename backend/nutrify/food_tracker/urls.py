@@ -22,6 +22,6 @@ urlpatterns = [
     path('save-goals/', views.save_goals, name='save_goals'),
     path('change-password/', login_required(PasswordChangeView.as_view(
         template_name='change_password.html',
-        success_url=reverse_lazy('login')  # Correct URL resolution
+        success_url=reverse_lazy('login') 
     )), name='change_password'),
 ] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

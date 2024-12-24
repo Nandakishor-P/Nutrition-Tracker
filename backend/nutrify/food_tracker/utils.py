@@ -10,7 +10,7 @@ def get_nutrition(food_item):
     params = {
         "app_id": settings.EDAMAM_APP_ID,  # Fetch App ID from settings
         "app_key": settings.EDAMAM_APP_KEY,  # Fetch App Key from settings
-        "ingr": food_item,  # Input food item (e.g., "1 apple")
+        "ingr": food_item,  # Input food item
     }
 
     # Make the GET request to the API
@@ -25,4 +25,4 @@ def get_nutrition(food_item):
             "fats": data.get("totalNutrients", {}).get("FAT", {}).get("quantity", 0),
         }
     else:
-        return None  # Return None if the API call fails
+        return None 
